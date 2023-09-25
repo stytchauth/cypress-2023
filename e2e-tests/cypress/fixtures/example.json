@@ -1,5 +1,13 @@
 {
   "name": "Using fixtures to represent data",
   "email": "hello@cypress.io",
-  "body": "Fixtures are a great way to mock data for responses to routes"
+  "body": "Fixtures are a great way to mock data for responses to routes",
+  "sampleWebAuthnCredential": {
+    "credentialId": "nLFVa7K+c4GopKE7pPsI09UK5h+avmJVcO6dyKv6XyI=",
+    "isResidentCredential": false,
+    "signCount": 1,
+    "rpId": "localhost",
+    "userHandle": "dXNlci10ZXN0LTk2MzVlMzEzLTkyN2UtNDQxZS1hYjg4LTExNjA1NmIzZGI5OA==",
+    "privateKey": "MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgwZ20+A00HlcCdh5kHXL9ipLKX+oRQB9Y/H4dXRIMnZ6hRANCAATlNAnROErVsVZM5EVRykBpVlybw1OA9MPaz6WsxoxAo8cGxE1gSUDjnUi1SFXsLJmNP6SB0PcgYFax/cCI1Z7S"
+  }
 }

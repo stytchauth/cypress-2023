@@ -24,7 +24,7 @@ export default function Profile() {
           Log out
         </button>
         {!hasSecondFactor && (
-          <button onClick={navigateToWebAuthn}>MFA with WebAuthn</button>
+          <button onClick={navigateToWebAuthn} id="MFA">MFA with WebAuthn</button>
         )}
       </div>
       <h1>You are logged in.{hasSecondFactor ? " You are MFA'ed." : ""}</h1>
