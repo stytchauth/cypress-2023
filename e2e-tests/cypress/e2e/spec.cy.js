@@ -118,7 +118,7 @@ describe("Demo App", () => {
 
   // This test signs up an email with a well-known tag (has_webauthn_already)
   // At the end, this test prints out the created WebAuthn credential for later use
-  // Use this (or a modificaiton based on it) to generate persistent credentials to
+  // Use this (or a modification based on it) to generate persistent credentials to
   // use in login flows with saved user data instead of signup flows like the test above
   it.skip('Can sign up and save a set of WebAuthn credentials for future use', () => {
     loginWithEmail('has_webauthn_already');
