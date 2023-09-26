@@ -17,10 +17,7 @@ const WebAuthnLogin = () => {
   // Determine from the user object if this user has registered a webauthn device at this domain
   const baseUrlDomain = new URL(BASE_URL).hostname;
   const hasRegisteredWebAuthnDevice =
-    user?.webauthn_registrations.length > 0 &&
-    user?.webauthn_registrations.find(
-      (i) => i.domain === baseUrlDomain && i.verified
-    ) !== undefined;
+    !!user?.webauthn_registrations.find((i) => i.domain === baseUrlDomain);
 
   const register = () => {
     stytch.webauthn.register();
