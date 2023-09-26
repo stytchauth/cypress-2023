@@ -12,24 +12,24 @@ if (output.error && output.error.code === "ENOENT") {
   console.log("Unable to apply", path, "falling back to next opt");
 }
 
-const baseUrl = process.env.CYPRESS_BASE_URL;
-if (!baseUrl) {
-  throw Error("Missing process.env.CYPRESS_BASE_URL");
+const BASE_URL = process.env.BASE_URL;
+if (!BASE_URL) {
+  throw Error("Missing process.env.BASE_URL");
 }
 
-const MAILOSAUR_SERVER_ID = process.env.CYPRESS_MAILOSAUR_SERVER_ID;
+const MAILOSAUR_SERVER_ID = process.env.MAILOSAUR_SERVER_ID;
 if (!MAILOSAUR_SERVER_ID) {
-  throw Error("Missing process.env.CYPRESS_MAILOSAUR_SERVER_ID");
+  throw Error("Missing process.env.MAILOSAUR_SERVER_ID");
 }
 
-const MAILOSAUR_API_KEY = process.env.CYPRESS_MAILOSAUR_API_KEY;
+const MAILOSAUR_API_KEY = process.env.MAILOSAUR_API_KEY;
 if (!MAILOSAUR_API_KEY) {
-  throw Error("Missing process.env.CYPRESS_MAILOSAUR_API_KEY");
+  throw Error("Missing process.env.MAILOSAUR_API_KEY");
 }
 
-const MAILOSAUR_PHONE_NUMBER = process.env.CYPRESS_MAILOSAUR_PHONE_NUMBER;
+const MAILOSAUR_PHONE_NUMBER = process.env.MAILOSAUR_PHONE_NUMBER;
 if (!MAILOSAUR_PHONE_NUMBER) {
-  throw Error("Missing process.env.CYPRESS_MAILOSAUR_PHONE_NUMBER");
+  throw Error("Missing process.env.MAILOSAUR_PHONE_NUMBER");
 }
 
 const CYPRESS_PROJECT_ID = process.env.CYPRESS_PROJECT_ID;
@@ -38,7 +38,7 @@ if (!CYPRESS_PROJECT_ID) {
 }
 
 module.exports = defineConfig({
-  e2e: { baseUrl },
+  e2e: { baseUrl: BASE_URL },
   projectId: CYPRESS_PROJECT_ID,
   includeShadowDom: true,
   env: {

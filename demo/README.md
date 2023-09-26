@@ -8,12 +8,12 @@ This is a demo app using the Stytch JavaScript SDK.
 
 ## Getting started
 
-1. Create a [Stytch](https://stytch.com/start-now) account. **NOTE:** You will need to add a credit card to be able to send login request emails to your test account. Go to [Billing](https://stytch.com/dashboard/settings/billing)
+1. Create a [Stytch](https://stytch.com/start-now) account. _**NOTE:** You will need to add a credit card to be able to send login request emails to your test account. Go to [Billing](https://stytch.com/dashboard/settings/billing)._
 2. Go to the [SDK Configuration page](https://stytch.com/dashboard/sdk-configuration) and enable the SDK for your Test environment.
-3. Create a .env file copied from .env-template. Set `REACT_APP_STYTCH_PUBLIC_TOKEN` to your Stytch project's Test env public token. You can find this value in the [https://stytch.com/dashboard/api-keys] (Stytch dashboard)
+3. Create a .env file copied from .env-template. Set `REACT_APP_STYTCH_PUBLIC_TOKEN` to your Stytch project's Test env public token. You can find this value in the [Stytch dashboard](https://stytch.com/dashboard/api-keys).
 4. In your terminal run:
 
-```
-yarn install
-yarn start
-```
+   ```
+   yarn install
+   yarn start
+   ```
