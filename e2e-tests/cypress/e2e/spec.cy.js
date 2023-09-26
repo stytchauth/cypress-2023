@@ -1,7 +1,6 @@
 const {
   emailName,
   fromEmail,
-  newEmailSubjectLine,
   MAILOSAUR_SERVER_ID,
   MAILOSAUR_PHONE_NUMBER,
 } = Cypress.env();
@@ -49,7 +48,6 @@ Object.keys(WebAuthn).forEach(key => {
 
 beforeEach(() => {
   cy.visit("/");
-  cy.fixture('example.json');
   WebAuthn.disable()
 });
 
@@ -74,8 +72,6 @@ describe("Demo App", () => {
       }
     ).then((email) => {
       expect(email.from[0].email).to.equal(fromEmail);
-      // expect(email.subject).to.contain(newEmailSubjectLine);
-
       const tokenLink = email.text.links[0].href;
       cy.log(`Visiting ${tokenLink}`);
       cy.visit(tokenLink);
@@ -120,6 +116,10 @@ describe("Demo App", () => {
     cy.contains("You are MFA'ed")
   })
 
+  // This test signs up an email with a well-known tag (has_webauthn_already)
+  // At the end, this test prints out the created WebAuthn credential for later use
+  // Use this (or a modificaiton based on it) to generate persistent credentials to
+  // use in login flows with saved user data instead of signup flows like the test above
   it.skip('Can sign up and save a set of WebAuthn credentials for future use', () => {
     loginWithEmail('has_webauthn_already');
 
