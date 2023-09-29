@@ -5,50 +5,9 @@ const {
   MAILOSAUR_PHONE_NUMBER,
 } = Cypress.env();
 
-/**
- * Maps an async/await function f to a Cypress promise
- * https://docs.cypress.io/api/utilities/promise#Waiting-for-Promises
- * https://docs.cypress.io/faq/questions/using-cypress-faq#Can-I-use-the-new-ES7-async-await-syntax
- */
-const chainAsync = (f) => {
-  return (...args) => {
-    return Cypress.Promise.resolve(f(...args));
-  };
-};
-
-// The WebAuthn object is a set of functions that invoke the underlying Chrome Dev Tools
-// implementation of the WebAuthn Virtual Authenticator protocol.
-// e.g. WebAuthn.enable() => invokes "WebAuthn.enable" method
-// pass in optional fields via WebAuthn.enable({ param: value })
-// TODO: Convert to Cypress commands for ease of use
-// Ref: https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn/
-const WebAuthn = {
-  addCredential: "WebAuthn.addCredential",
-  addVirtualAuthenticator: "WebAuthn.addVirtualAuthenticator",
-  clearCredentials: "WebAuthn.clearCredentials",
-  disable: "WebAuthn.disable",
-  enable: "WebAuthn.enable",
-  getCredential: "WebAuthn.getCredential",
-  getCredentials: "WebAuthn.getCredentials",
-  removeCredential: "WebAuthn.removeCredential",
-  removeVirtualAuthenticator: "WebAuthn.removeVirtualAuthenticator",
-  setAutomaticPresenceSimulation: "WebAuthn.setAutomaticPresenceSimulation",
-  setResponseOverrideBits: "WebAuthn.setResponseOverrideBits",
-  setUserVerified: "WebAuthn.setUserVerified",
-}
-
-Object.keys(WebAuthn).forEach(key => {
-  const command = WebAuthn[key];
-  WebAuthn[key] = (params = {}) => cy.wrap(Cypress.Promise.resolve(Cypress.automation("remote:debugger:protocol", {
-    command,
-    params
-  })))
-})
-
-
 beforeEach(() => {
   cy.visit("/");
-  WebAuthn.disable()
+  cy.webauthnDisable();
 });
 
 describe("Demo App", () => {
@@ -94,12 +53,12 @@ describe("Demo App", () => {
     cy.get("#MFA").should("have.length", 1).click();
 
     // Enable the Virtual WebAuthn Environmnet
-    WebAuthn.enable()
+    cy.webauthnEnable();
 
     // Create an Authenticator. This one is internal- like a TouchID verifier. Other values to try are
     // usb - like a yubikey verifier
     // ble - like a phone verifier
-    WebAuthn.addVirtualAuthenticator({
+    cy.webauthnAddVirtualAuthenticator({
       options: {
         protocol: "ctap2",
         transport: "internal",
@@ -126,12 +85,12 @@ describe("Demo App", () => {
     cy.get("#MFA").should("have.length", 1).click();
 
     // Enable the Virtual WebAuthn Environmnet
-    WebAuthn.enable()
+    cy.webauthnEnable()
 
     // Create an Authenticator. This one is internal- like a TouchID verifier. Other values to try are
     // usb - like a yubikey verifier
     // ble - like a phone verifier
-    WebAuthn.addVirtualAuthenticator({
+    cy.webauthnAddVirtualAuthenticator({
       options: {
         protocol: "ctap2",
         transport: "internal",
@@ -154,7 +113,7 @@ describe("Demo App", () => {
 
     cy.get('@authenticatorId').then(authenticatorId => {
       // This will print the credential ID + private key. You can store them as Cypress fixtures for later use
-      WebAuthn.getCredentials({authenticatorId})
+      cy.webauthnGetCredentials({authenticatorId})
         .then(output => cy.log("got created credential", output))
     })
   })
@@ -162,9 +121,9 @@ describe("Demo App", () => {
   it('Can sign in with a magic link and then authenticate with a previously registered MFA credential', () => {
     loginWithEmail('has_webauthn_already')
     // Enable the Virtual WebAuthn Environmnet
-    WebAuthn.enable()
+    cy.webauthnEnable()
 
-    WebAuthn.addVirtualAuthenticator({
+    cy.webauthnAddVirtualAuthenticator({
       options: {
         protocol: "ctap2",
         transport: "internal",
@@ -175,7 +134,7 @@ describe("Demo App", () => {
     }).then(output => {
       // Now load our fixture we previously created, and attach the webauthn credential to the virtual authenticator
       cy.fixture('example.json').then((fixture) => {
-        return WebAuthn.addCredential({
+        return cy.webauthnAddCredential({
           authenticatorId: output.authenticatorId,
           credential: fixture.sampleWebAuthnCredential,
         })
