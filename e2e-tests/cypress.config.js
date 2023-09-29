@@ -1,13 +1,14 @@
 const { defineConfig } = require('cypress');
 const dotenv = require('dotenv');
+const path = require('path');
 
-const path = '.env';
+const envPath = path.join(__dirname, '.env');
 
-console.log('Attempting to apply env vars at', path);
-const output = dotenv.config({ path });
+console.log('Attempting to apply env vars at', envPath);
+const output = dotenv.config({ path: envPath });
 
 if (output.error && output.error.code === 'ENOENT') {
-  console.log('Unable to apply', path, 'falling back to next opt');
+  console.log('Unable to apply', envPath, 'falling back to next opt');
 }
 
 const BASE_URL = process.env.BASE_URL;

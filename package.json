@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "workspaces": [
+    "demo",
+    "e2e-tests"
+  ],
+  "packageManager": "yarn@3.6.3",
+  "devDependencies": {
+    "eslint": "^8.50.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react": "^7.33.2",
+    "prettier": "^3.0.3"
+  },
+  "scripts": {
+    "cypress:open": "yarn workspace e2e-tests cypress:open",
+    "cypress:run": "yarn workspace e2e-tests cypress:run",
+    "react:start": " yarn workspace demo start",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+  }
+}
