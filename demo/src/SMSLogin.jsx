@@ -1,15 +1,15 @@
-import React from "react";
-import { StytchLogin } from "@stytch/react";
-import { StytchEventType } from "@stytch/vanilla-js";
-import { styleConfig } from "./styleConfig";
-import { useNavigate } from "react-router-dom";
-import { useIsLoggedIn } from "./useIsLoggedIn";
+import React from 'react';
+import { StytchLogin } from '@stytch/react';
+import { StytchEventType } from '@stytch/vanilla-js';
+import { styleConfig } from './styleConfig';
+import { useNavigate } from 'react-router-dom';
+import { useIsLoggedIn } from './useIsLoggedIn';
 
 const config = {
-  products: ["otp"],
+  products: ['otp'],
   otpOptions: {
-    methods: ["sms"],
-  },
+    methods: ['sms']
+  }
 };
 
 const SMSLogin = () => {
@@ -18,16 +18,12 @@ const SMSLogin = () => {
 
   const onAuthenticate = (event) => {
     if (event.type === StytchEventType.OTPsAuthenticate) {
-      navigate("/profile", { replace: true });
+      navigate('/profile', { replace: true });
     }
   };
 
   return (
-    <StytchLogin
-      config={config}
-      styles={styleConfig}
-      callbacks={{ onEvent: onAuthenticate }}
-    />
+    <StytchLogin config={config} styles={styleConfig} callbacks={{ onEvent: onAuthenticate }} />
   );
 };
 

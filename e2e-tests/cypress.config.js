@@ -1,40 +1,38 @@
-const { defineConfig } = require("cypress");
-const dotenv = require("dotenv");
+const { defineConfig } = require('cypress');
+const dotenv = require('dotenv');
 
-const path = ".env";
+const path = '.env';
 
-console.log("Attempting to apply env vars at", path);
+console.log('Attempting to apply env vars at', path);
 const output = dotenv.config({ path });
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-if (output.error && output.error.code === "ENOENT") {
-  // eslint-disable-next-line no-console
-  console.log("Unable to apply", path, "falling back to next opt");
+
+if (output.error && output.error.code === 'ENOENT') {
+  console.log('Unable to apply', path, 'falling back to next opt');
 }
 
 const BASE_URL = process.env.BASE_URL;
 if (!BASE_URL) {
-  throw Error("Missing process.env.BASE_URL");
+  throw Error('Missing process.env.BASE_URL');
 }
 
 const MAILOSAUR_SERVER_ID = process.env.MAILOSAUR_SERVER_ID;
 if (!MAILOSAUR_SERVER_ID) {
-  throw Error("Missing process.env.MAILOSAUR_SERVER_ID");
+  throw Error('Missing process.env.MAILOSAUR_SERVER_ID');
 }
 
 const MAILOSAUR_API_KEY = process.env.MAILOSAUR_API_KEY;
 if (!MAILOSAUR_API_KEY) {
-  throw Error("Missing process.env.MAILOSAUR_API_KEY");
+  throw Error('Missing process.env.MAILOSAUR_API_KEY');
 }
 
 const MAILOSAUR_PHONE_NUMBER = process.env.MAILOSAUR_PHONE_NUMBER;
 if (!MAILOSAUR_PHONE_NUMBER) {
-  throw Error("Missing process.env.MAILOSAUR_PHONE_NUMBER");
+  throw Error('Missing process.env.MAILOSAUR_PHONE_NUMBER');
 }
 
 const CYPRESS_PROJECT_ID = process.env.CYPRESS_PROJECT_ID;
 if (!CYPRESS_PROJECT_ID) {
-  throw Error("Missing process.env.CYPRESS_MAILOSAUR_PHONE_NUMBER");
+  throw Error('Missing process.env.CYPRESS_MAILOSAUR_PHONE_NUMBER');
 }
 
 module.exports = defineConfig({
@@ -42,12 +40,12 @@ module.exports = defineConfig({
   projectId: CYPRESS_PROJECT_ID,
   includeShadowDom: true,
   env: {
-    emailName: "stytchtesting",
-    newEmailSubjectLine: "Your account creation request for ",
-    existingEmailSubjectLine: "Your login request to ",
-    fromEmail: "login@test.stytch.com",
+    emailName: 'stytchtesting',
+    newEmailSubjectLine: 'Your account creation request for ',
+    existingEmailSubjectLine: 'Your login request to ',
+    fromEmail: 'login@test.stytch.com',
     MAILOSAUR_SERVER_ID,
     MAILOSAUR_API_KEY,
-    MAILOSAUR_PHONE_NUMBER,
-  },
+    MAILOSAUR_PHONE_NUMBER
+  }
 });

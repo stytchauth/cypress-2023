@@ -1,14 +1,9 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
-import EmailLogin from "./EmailLogin";
-import SMSLogin from "./SMSLogin";
-import Authenticate from "./Authenticate";
-import Profile from "./Profile";
-import WebAuthnLogin from "./WebAuthnLogin";
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import EmailLogin from './EmailLogin';
+import SMSLogin from './SMSLogin';
+import Authenticate from './Authenticate';
+import Profile from './Profile';
+import WebAuthnLogin from './WebAuthnLogin';
 
 function App() {
   return (
