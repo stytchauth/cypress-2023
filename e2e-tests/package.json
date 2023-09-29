@@ -2,10 +2,7 @@
   "name": "e2e-tests",
   "scripts": {
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+    "cypress:run": "cypress run"
   },
   "devDependencies": {
     "cypress": "13.2.0",
