@@ -1,11 +1,12 @@
 const { emailName, fromEmail, MAILOSAUR_SERVER_ID, MAILOSAUR_PHONE_NUMBER } = Cypress.env();
-
-beforeEach(() => {
-  cy.visit('/');
-  cy.webauthnDisable();
-});
+const PASSKEYS_DEMO_URL = 'https://passkey-demo-stytch-auth.vercel.app/';
 
 describe('Demo App', () => {
+  beforeEach(() => {
+    cy.visit('/');
+    cy.webauthnDisable();
+  });
+
   const loginWithEmail = (tag = undefined) => {
     const timestamp = new Date();
 
@@ -14,7 +15,7 @@ describe('Demo App', () => {
 
     cy.get('#email-input').click();
     cy.get('#email-input').type(email);
-    cy.get('button[type=submit]').should('have.length', 1).click();
+    cy.get('button[type=submit]').click();
 
     cy.mailosaurGetMessage(
       MAILOSAUR_SERVER_ID,
@@ -37,7 +38,7 @@ describe('Demo App', () => {
   it('Can sign in with a magic link and then sign out', () => {
     loginWithEmail();
 
-    cy.get('#logout').should('have.length', 1).click();
+    cy.get('#logout').click();
 
     cy.contains('Sign up or log in');
   });
@@ -45,7 +46,7 @@ describe('Demo App', () => {
   it('Can sign in with a magic link and then register a webauthn credential', () => {
     loginWithEmail();
 
-    cy.get('#MFA').should('have.length', 1).click();
+    cy.get('#MFA').click();
 
     // Enable the Virtual WebAuthn Environmnet
     cy.webauthnEnable();
@@ -77,7 +78,7 @@ describe('Demo App', () => {
   it.skip('Can sign up and save a set of WebAuthn credentials for future use', () => {
     loginWithEmail('has_webauthn_already');
 
-    cy.get('#MFA').should('have.length', 1).click();
+    cy.get('#MFA').click();
 
     // Enable the Virtual WebAuthn Environmnet
     cy.webauthnEnable();
@@ -137,7 +138,7 @@ describe('Demo App', () => {
       });
     });
 
-    cy.get('#MFA').should('have.length', 1).click();
+    cy.get('#MFA').click();
 
     cy.contains('Authenticate').click();
 
@@ -153,7 +154,7 @@ describe('Demo App', () => {
 
     cy.get('#phone-input').click();
     cy.get('#phone-input').type(MAILOSAUR_PHONE_NUMBER);
-    cy.get('button[type="submit"]').should('have.length', 1).click();
+    cy.get('button[type="submit"]').click();
 
     cy.mailosaurGetMessage(
       MAILOSAUR_SERVER_ID,
@@ -169,8 +170,64 @@ describe('Demo App', () => {
       cy.contains('You are logged in.');
     });
 
-    cy.get('#logout').should('have.length', 1).click();
+    cy.get('#logout').click();
 
     cy.contains('Sign up or log in');
+  });
+});
+
+describe('Passkeys Demo App', () => {
+  beforeEach(() => {
+    cy.visit(PASSKEYS_DEMO_URL);
+    cy.webauthnDisable();
+  });
+
+  const loginWithSMS = () => {
+    const timestamp = new Date();
+    cy.get('button').contains('Text').click();
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
+    cy.wait(1000); // Let SDK load
+
+    cy.get('#phone-input').click();
+    cy.get('#phone-input').type(MAILOSAUR_PHONE_NUMBER);
+    cy.get('button[type="submit"]').click();
+
+    cy.mailosaurGetMessage(
+      MAILOSAUR_SERVER_ID,
+      {
+        sentTo: `+1${MAILOSAUR_PHONE_NUMBER}`
+      },
+      {
+        receivedAfter: timestamp
+      }
+    ).then((sms) => {
+      const code = sms.text.codes[0].value;
+      cy.get('input').type(code);
+    });
+  };
+
+  it('Can sign in with SMS OTP and create a passkey', () => {
+    loginWithSMS();
+
+    // Enable the Virtual WebAuthn Environmnet
+    cy.webauthnEnable();
+
+    // Create an Authenticator. This one is internal- like a TouchID verifier. Other values to try are
+    // usb - like a yubikey verifier
+    // ble - like a phone verifier
+    cy.webauthnAddVirtualAuthenticator({
+      options: {
+        protocol: 'ctap2',
+        transport: 'usb',
+        hasResidentKey: true,
+        hasUserVerification: true,
+        isUserVerified: true
+      }
+    });
+
+    cy.get('button').contains('Create a passkey').click();
+    cy.contains('Passkey successfully created');
+    cy.get('button').contains('Done').click();
+    cy.get('button').contains('Reset Demo').click();
   });
 });
