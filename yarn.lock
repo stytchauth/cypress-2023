@@ -5834,6 +5834,7 @@ __metadata:
   dependencies:
     "@stytch/react": ^9.0.0
     "@stytch/vanilla-js": ^2.2.1
+    eslint-plugin-react: ^7.33.2
     react: ^18.2.0
     react-dom: ^18.2.0
     react-router-dom: ^6.15.0
@@ -12633,7 +12634,6 @@ __metadata:
     eslint: ^8.50.0
     eslint-config-prettier: ^9.0.0
     eslint-plugin-prettier: ^5.0.0
-    eslint-plugin-react: ^7.33.2
     prettier: ^3.0.3
   languageName: unknown
   linkType: soft

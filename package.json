@@ -9,7 +9,6 @@
     "eslint": "^8.50.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
-    "eslint-plugin-react": "^7.33.2",
     "prettier": "^3.0.3"
   },
   "scripts": {

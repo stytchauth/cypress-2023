@@ -10,6 +10,9 @@
     "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1"
   },
+  "devDependencies": {
+    "eslint-plugin-react": "^7.33.2"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
