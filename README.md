@@ -1,4 +1,4 @@
-# js-sdk-cypress-tests
+# Stytch demo app + Cypress E2E tests
 
 Testing Stytch JavaScript SDK passwordless authentication flows using Cypress and Mailosaur
 
