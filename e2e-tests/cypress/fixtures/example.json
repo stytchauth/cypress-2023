@@ -3,11 +3,11 @@
   "email": "hello@cypress.io",
   "body": "Fixtures are a great way to mock data for responses to routes",
   "sampleWebAuthnCredential": {
-    "credentialId": "nLFVa7K+c4GopKE7pPsI09UK5h+avmJVcO6dyKv6XyI=",
+    "credentialId": "VFaveJ9NQsLd/v1my5KSXl6lRPhGSMfzcYb5eL7T+tA=",
     "isResidentCredential": false,
-    "signCount": 1,
-    "rpId": "localhost",
-    "userHandle": "dXNlci10ZXN0LTk2MzVlMzEzLTkyN2UtNDQxZS1hYjg4LTExNjA1NmIzZGI5OA==",
-    "privateKey": "MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgwZ20+A00HlcCdh5kHXL9ipLKX+oRQB9Y/H4dXRIMnZ6hRANCAATlNAnROErVsVZM5EVRykBpVlybw1OA9MPaz6WsxoxAo8cGxE1gSUDjnUi1SFXsLJmNP6SB0PcgYFax/cCI1Z7S"
+    "rpId": "stytch-cypress-demo.vercel.app",
+    "privateKey": "MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgJi39mq/1oHkCNuON+H7i3H7E4+yK6LqEmaN7nepP6gOhRANCAATgRWLDpXLSWImCH0jQhPH01Rr+Yf3hRHMkbD1weGzT0TGwIdxk4qtbr5CQrPEOm8aJueRjlKe/PpVgz4s27yay",
+    "userHandle": "dXNlci10ZXN0LWU4MzViNTJhLWM5MzQtNDYyZi1hYmI3LTQwM2JlOGU3YzlhZA==",
+    "signCount": 2
   }
 }

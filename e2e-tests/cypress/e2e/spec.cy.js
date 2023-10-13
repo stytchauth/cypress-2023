@@ -117,7 +117,7 @@ describe('Demo App', () => {
 
   it('Can sign in with a magic link and then authenticate with a previously registered MFA credential', () => {
     loginWithEmail('has_webauthn_already');
-    // Enable the Virtual WebAuthn Environmnet
+    // Enable the Virtual WebAuthn Environment
     cy.webauthnEnable();
 
     cy.webauthnAddVirtualAuthenticator({
