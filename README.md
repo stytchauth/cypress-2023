@@ -10,8 +10,8 @@ This repo uses node and npm. We recommend using [nvm](https://github.com/nvm-sh/
 
 ```bash
 nvm use
-cd ./e2e-tests && npm i
-cd ../demo && npm i
+cd ./e2e-tests && yarn install
+cd ../demo && yarn install && cd ..
 ```
 
 ## Project Layout
