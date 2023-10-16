@@ -6,7 +6,7 @@ This repository contains code from the talk _Testing Passwordless Authentication
 
 ## Installation
 
-This repo uses node and npm. We recommend using [nvm](https://github.com/nvm-sh/nvm) to manage node versions locally.
+This repo uses node and yarn. We recommend using [nvm](https://github.com/nvm-sh/nvm) to manage node versions locally.
 
 ```bash
 nvm use
