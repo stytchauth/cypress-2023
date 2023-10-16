@@ -19,8 +19,6 @@ cd ../demo && npm i
 - `demo` contains a small React application with multiple login & authentication flows
 - `e2e-tests` contains a set of Cypress e2e tests that execute against the demo app
 
-## Getting Started
-
 ## Running the E2E tests
 
 Follow the setup instructions in [/e2e-tests/README.md](/e2e-tests/README.md). By default the tests will run on our hosted version of the Stytch demo app. If you would like to run the Stytch demo app locally, follow instructions in [/demo/README.md](/demo/README.md).
