@@ -1961,10 +1961,10 @@
   resolved "https://registry.yarnpkg.com/@stytch/react/-/react-9.0.0.tgz#c89978c66887134189b9116b6d79313a75d950bb"
   integrity sha512-eXT/Fgpk8L1mIi1yPNbiYRSnYv7VLBtmOi74fa97RjFykmec3VE0J+sjyg9QULe98HqyWAEBfFeQTXq2GICAxg==
 
-"@stytch/vanilla-js@^2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@stytch/vanilla-js/-/vanilla-js-2.2.1.tgz#2b4a9662fb9e2e5f56334976727887983d2f36a7"
-  integrity sha512-7XqiU5/ivrqb+0Qbin5vN+Jww8n0OD9eIMUQ5MgIl4Pwp6Tbe6vylv9o/sQ4A7A/SIlvbpwxagDEWFl0JF0y8g==
+"@stytch/vanilla-js@^2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@stytch/vanilla-js/-/vanilla-js-2.2.2.tgz#eb169145cf45b16f839b1da68e5d75bc3cef29b8"
+  integrity sha512-fZ6erbLi4GG7gTVTSa9qCUUZolqiohPKTK4qtgrM74bBjK1jpxEaT6A088Ow5SG8qBmcXv2J/v4D/1dqS8MB6Q==
   dependencies:
     "@github/webauthn-json" "1.0.3"
     "@radix-ui/react-tabs" "0.1.5"
